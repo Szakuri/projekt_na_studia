@@ -4,8 +4,17 @@ import numpy as np
 excel_file= 'EkstraklasaMoc.xlsx'
 
 
-df = pd.read_excel(excel_file)
+es = pd.read_excel(excel_file, usecols=["KLUB","SUMA"])
 
-print(df.head())
+kluby = es['KLUB'].values.tolist()
+suma = es['SUMA'].values.tolist()
 
-print(df)
+
+overall = dict(zip(kluby, suma))
+
+
+
+
+print(overall)
+
+
