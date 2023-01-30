@@ -13,8 +13,14 @@ suma = es['SUMA'].values.tolist()
 overall = dict(zip(kluby, suma))
 
 
-
-
 print(overall)
 
+overall = {
+    klub.replace(' ',''): ov
+    for klub, ov in overall.items()
+}
 
+for klub, ov in overall.items():
+    exec(f"{klub}={repr(ov)}")
+
+print(ZagłębieLubin)
