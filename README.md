@@ -2,6 +2,8 @@
 
 Projekt tworzony w języku Python w celu zaliczenia przedmiotu.
 
+Wersja Python 3.10.9
+
 Program który wykonałem ma za pomocą dużej ilości zmiennych obliczać za pomocą algorytmów predykcję, kolejnego sezonu polskiej 1 ligi piłki nożnej tzw. Ekstraklasy.
 
 Strona która pomogła mi uzbierać dane na temat drużyn: https://ekstrastats.pl/
@@ -9,3 +11,6 @@ Strona która pomogła mi uzbierać dane na temat drużyn: https://ekstrastats.p
 Aplikacja którą musiałem pobrać, żeby móc dołączyć arkusz kalkulacyjny na Github: Git XL, instalując ją przy użyciu komendy:
 
 git xl install
+
+Na diagnozowanie danych z Excel w Pythonie użyłem biblioteki pandas oraz openpyxl, 
+obie zainstalowałem poleceniem pip install.

@@ -1,11 +1,11 @@
-import requests
-import json
+import pandas as pd
+import numpy as np
 
-uri = 'https://api.football-data.org/v4/matches'
-headers = { 'X-Auth-Token': 'UR_TOKEN' }
+excel_file= 'EkstraklasaMoc.xlsx'
 
-response = requests.get(uri, headers=headers)
 
-for matches in response.json()['matches']:
-    print matches
+df = pd.read_excel(excel_file)
 
+print(df.head())
+
+print(df)
