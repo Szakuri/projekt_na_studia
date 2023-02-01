@@ -251,3 +251,14 @@ winnersi = mocNaNazwe(winnersi, overall)
 
 print(winnersi)
 
+
+
+
+new_em = pd.DataFrame({"Rezultaty": winnersi})
+
+new_em.to_excel("rezultaty.xlsx",index=False)
+
+mix_em = pd.concat([em,new_em],axis=1)
+
+mix_em.to_excel("MeczeRezultaty.xlsx",index=False)
+
