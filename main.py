@@ -56,24 +56,28 @@ for i, item in enumerate(mecze):
 
 
 def home_77(array_home):
-    for i in range(len(array_home)):
-        if i % 2 == 1:
-            array_home[i] -= 77
-    return array_home
+     for i in range(len(array_home)):
+         if i % 2 == 1:
+             array_home[i] -= 77
+     return array_home
 
 
-home_mecze_moc = home_77(mecze_moc)
+# # home_mecze_moc = home_77(mecze_moc)
+
+
 
 def opcjeRezultatu(team1,team2,array):
     team1 += 77
     if team1 > team2:
-        larger = team1 + 5
+        larger = team1
         smaller = team2
     else:
         larger = team2
         smaller = team1
 
     team_diff = larger - smaller
+
+ 
 
     if team_diff >= 500:
         chance = random.random()
@@ -148,11 +152,22 @@ def porównywarka(array_home):
         opcjeRezultatu(array_home[i],array_home[i+1],zwycięzca)
     return zwycięzca
 
-winnersi = porównywarka(home_mecze_moc)
+
+winnersi = porównywarka(mecze_moc)
+
+
+
+
+
+def mocNaNazwe(array, dict):
+    for i, item in enumerate(array):
+        for k, ov in dict.items():
+            if item == ov:
+                array[i] = k
+    return array
+
+
+winnersi = mocNaNazwe(winnersi, overall)
 
 print(winnersi)
-
-
-        
-    
 
