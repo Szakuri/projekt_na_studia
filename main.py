@@ -44,8 +44,6 @@ mecze = [m for pair in zip(gospodarz,gość) for m in pair]
 for i, klub in enumerate(mecze):
     mecze[i] = klub.strip()
 
-print(mecze)
-
 
 
 mecze_moc = [0] * len(mecze)
@@ -57,5 +55,26 @@ for i, item in enumerate(mecze):
             break
 
 
-print(mecze_moc)
+def home_77(array_home):
+    for i in range(len(array_home)):
+        if i % 2 == 1:
+            array_home[i] -= 77
+    return array_home
 
+
+home_mecze_moc = home_77(mecze_moc)
+
+
+
+def porównywarka(array_home):
+    zwycięzca = []
+    for i in range(0,len(array_home) - 1,2):
+        if array_home[i] > array_home[i + 1]:
+            zwycięzca.append(array_home[i])
+        else:
+            zwycięzca.append(array_home[i + 1])
+    return zwycięzca
+
+winnersi = porównywarka(home_mecze_moc)
+
+print(winnersi)
