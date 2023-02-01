@@ -64,17 +64,95 @@ def home_77(array_home):
 
 home_mecze_moc = home_77(mecze_moc)
 
+def opcjeRezultatu(team1,team2,array):
+    team1 += 77
+    if team1 > team2:
+        larger = team1 + 5
+        smaller = team2
+    else:
+        larger = team2
+        smaller = team1
+
+    team_diff = larger - smaller
+
+    if team_diff >= 500:
+        chance = random.random()
+        if chance <= 0.9:
+            array.append(larger)
+        elif chance <= 0.95:
+            array.append("Remis")
+        elif chance > 0.95:
+            array.append(smaller)
+
+
+    elif team_diff >= 300:
+        chance = random.random()
+        if chance <= 0.75:
+            array.append(larger)
+        elif chance <= 0.9:
+            array.append("Remis")
+        elif chance > 0.9:
+            array.append(smaller)
+
+    elif team_diff >= 200:
+        chance = random.random()
+        if chance <= 0.6:
+            array.append(larger)
+        elif chance <= 0.85:
+            array.append("Remis")
+        elif chance > 0.85:
+            array.append(smaller)
+
+    elif team_diff >= 150:
+        chance = random.random()
+        if chance <= 0.5:
+            array.append(larger)
+        elif chance <= 0.8:
+            array.append("Remis")
+        elif chance > 0.8:
+            array.append(smaller)
+        
+    elif team_diff >= 100:
+        chance = random.random()
+        if chance <= 0.4:
+            array.append(larger)
+        elif chance <= 0.8:
+            array.append("Remis")
+        elif chance > 0.8:
+            array.append(smaller)
+
+    elif team_diff >= 50:
+        chance = random.random()
+        if chance <= 0.3:
+            array.append(larger)
+        elif chance <= 0.75:
+            array.append("Remis")
+        elif chance > 0.75:
+            array.append(smaller)
+
+    elif team_diff < 50:
+        chance = random.random()
+        if chance <= 0.25:
+            array.append(larger)
+        elif chance <= 0.75:
+            array.append("Remis")
+        elif chance > 0.75:
+            array.append(smaller)
+
+
 
 
 def porównywarka(array_home):
     zwycięzca = []
     for i in range(0,len(array_home) - 1,2):
-        if array_home[i] > array_home[i + 1]:
-            zwycięzca.append(array_home[i])
-        else:
-            zwycięzca.append(array_home[i + 1])
+        opcjeRezultatu(array_home[i],array_home[i+1],zwycięzca)
     return zwycięzca
 
 winnersi = porównywarka(home_mecze_moc)
 
 print(winnersi)
+
+
+        
+    
+
