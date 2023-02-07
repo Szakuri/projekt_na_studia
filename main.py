@@ -1,8 +1,17 @@
 import pandas as pd
 import numpy as np
 import random
+import os
 
 excel_file= 'EkstraklasaMoc.xlsx'
+
+excel_file_delete = "MeczeRezultaty.xlsx"
+
+if os.path.exists(excel_file_delete):
+    os.remove(excel_file_delete)
+    print(f"Plik {excel_file_delete} został usunięty pomyślnie.")
+else:
+    print(f"Plik {excel_file_delete} nie istnieje.")
 
 
 es = pd.read_excel(excel_file, usecols=["KLUB","SUMA"])
