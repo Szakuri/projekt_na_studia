@@ -3,21 +3,18 @@ def linia():
     print("====================================")
 
 
-def path1():
+def path():
     import os
     return os.path.dirname(os.path.abspath("MeczeRezultaty.xlsx"))
 
-def path2():
-    import os
-    return os.path.dirname(os.path.abspath("Wynik końcowy na koniec sezonu.xlsx"))
+
 
 
 def closeExcel():
     import win32com.client as win
-    x = path1()
-    y = path2()
+    x = path()
+
     path_excel_1 = f"{x}\MeczeRezultaty.xlsx"
-    path_excel_2 = f"{y}\Wynik końcowy na koniec sezonu"
 
 
     x1 = win.gencache.EnsureDispatch("Excel.Application")
@@ -39,6 +36,7 @@ def menu():
     print("3. Wyłącz arkusz z rezultatami")
     print("4. Wyjście")
     wybor = int(input("Wybierz opcję [1-4]: "))
+    linia()
     if wybor == 1:
         opcja_1()
     elif wybor == 2:
@@ -53,13 +51,14 @@ def menu():
 
 
 def opcja_1():
+    
 
     import pandas as pd
     import numpy as np
     import os
+    import time
 
-
-
+    
 
     excel_file= 'EkstraklasaMoc.xlsx'
     excel_file_delete = "MeczeRezultaty.xlsx"
@@ -135,14 +134,20 @@ def opcja_1():
 
     excel_file_3 = "MeczeRezultaty.xlsx"
 
+
     excel_file_4 = "Wynik końcowy na koniec sezonu.xlsx"
 
 
+    filesOpen(excel_file_3)
+
+    filesOpen(excel_file_4)
+
+    print("Ładowanie plików z wynikami... .Potrwa to kilka sekund")
+
+    pathSave = path()
 
 
-        
-    filesOpen(excel_file_3,excel_file_4)
-
+    time.sleep(5)
 
     finish = pd.read_excel(excel_file_4, usecols=["KLUB","PKT"])
 
@@ -150,6 +155,8 @@ def opcja_1():
     finish.sort_values(by='PKT',ascending=False, inplace=True)
 
     print(finish.to_string(index=False))
+
+    fileSave(f"{pathSave}\{excel_file_4}")
 
     menu()
 
@@ -343,4 +350,9 @@ def filesOpen(file1):
     os.startfile(file1)   
     time.sleep(2)   
 
- 
+def fileSave(path):
+    import win32com.client as win
+    x1 = win.gencache.EnsureDispatch("Excel.Application")
+    x2 = x1.Workbooks.Open(path)
+    x2.Save()
+    x1.Quit()
