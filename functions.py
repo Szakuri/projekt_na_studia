@@ -10,22 +10,24 @@ def path():
 
 
 
-def closeExcel():
-    import win32com.client as win
-    x = path()
+# def closeExcel():
+#     import win32com.client as win
+#     x = path()
 
-    path_excel_1 = f"{x}\MeczeRezultaty.xlsx"
+#     path_excel_1 = f"{x}\MeczeRezultaty.xlsx"
 
 
-    x1 = win.gencache.EnsureDispatch("Excel.Application")
-    x2 = x1.Workbooks.Open(path_excel_1)
-    x2.Close(SaveChanges=False)
-    x1.Quit()
-    menu()
+#     x1 = win.gencache.EnsureDispatch("Excel.Application")
+#     x2 = x1.Workbooks.Open(path_excel_1)
+#     x2.Close(SaveChanges=False)
+#     x1.Quit()
+#     menu()
 
 
 def start():
     print("Dzień dobry! Przedstawiam program współpracujący z arkuszami kalkulacyjnymi, mający na celu sprawdzić przewidywany tegoroczny sezon Ekstraklasy. Wybierz jedną z opcji aby przejść dalej.")
+    
+
 
 def menu():
     linia()
@@ -33,21 +35,21 @@ def menu():
     linia()
     print("1. Rozpocznij przewidywania sezonu")
     print("2. Poznaj siłę drużyn")
-    print("3. Wyłącz arkusz z rezultatami")
-    print("4. Wyjście")
-    wybor = int(input("Wybierz opcję [1-4]: "))
-    linia()
-    if wybor == 1:
-        opcja_1()
-    elif wybor == 2:
-        opcja_2()
-    elif wybor == 3:
-        closeExcel()
-    elif wybor == 4:
-        wyjscie()
-    else:
-        print("Nieprawidłowa wartość. Spróbuj ponownie.")
-        menu()
+    print("3. Wyjście")
+    try:
+        wybor = int(input("Wybierz opcję [1-3]: "))
+        linia()
+        if wybor == 1:
+            opcja_1()
+        elif wybor == 2:
+            opcja_2()
+        elif wybor == 3:
+            wyjscie()
+        else:
+            print("Nieprawidłowa wartość. Spróbuj ponownie.")
+            menu()
+    except ValueError:
+        print("Program został już wcześniej otwarty!")
 
 
 def opcja_1():
@@ -71,7 +73,7 @@ def opcja_1():
         else:
             print(f"Plik {excel_file_delete} nie istnieje.")
     except PermissionError:
-        print("Plik MeczeRezultaty.xlsx jest otwarty, wybierz najpierw opcję 3, aby go usunąć.")
+        print("Plik MeczeRezultaty.xlsx jest już otwarty. Zamknij go i ponownie wybierz opcję 1")
         menu()
 
     es = pd.read_excel(excel_file, usecols=["KLUB","SUMA"])
@@ -117,10 +119,6 @@ def opcja_1():
     winnersi = porównywarka(mecze_moc)
 
 
-
-
-
-
     winnersi = mocNaNazwe(winnersi, overall)
 
 
@@ -135,7 +133,7 @@ def opcja_1():
     excel_file_3 = "MeczeRezultaty.xlsx"
 
 
-    excel_file_4 = "Wynik końcowy na koniec sezonu.xlsx"
+    excel_file_4 = "Wynik na koniec sezonu.xlsx"
 
 
     filesOpen(excel_file_3)
@@ -146,6 +144,7 @@ def opcja_1():
 
     pathSave = path()
 
+    # fileSave(f"{pathSave}\{excel_file_4}")
 
     time.sleep(5)
 
@@ -155,8 +154,6 @@ def opcja_1():
     finish.sort_values(by='PKT',ascending=False, inplace=True)
 
     print(finish.to_string(index=False))
-
-    fileSave(f"{pathSave}\{excel_file_4}")
 
     menu()
 
@@ -350,9 +347,10 @@ def filesOpen(file1):
     os.startfile(file1)   
     time.sleep(2)   
 
-def fileSave(path):
-    import win32com.client as win
-    x1 = win.gencache.EnsureDispatch("Excel.Application")
-    x2 = x1.Workbooks.Open(path)
-    x2.Save()
-    x1.Quit()
+# def fileSave(path):
+#     import win32com.client as win
+#     x1 = win.gencache.EnsureDispatch("Excel.Application")
+#     x2 = x1.Workbooks.Open(path)
+#     x2.Save()
+#     x1.Quit()
+
